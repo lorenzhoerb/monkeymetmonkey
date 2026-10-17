@@ -1,16 +1,17 @@
 # monkeymetmonkey.com – static site
 
-Plain static site: `index.html` + `assets/` (css, js, img, fonts). No build step.
+Plain static site in `public/`: `index.html` + `assets/` (css, js, img, fonts). No build step.
 
 ## Preview locally
-    python3 -m http.server 8000   # then open http://localhost:8000
+    python3 -m http.server 8000 -d public   # then open http://localhost:8000
 
-## Deploy to Cloudflare Pages
-Option A – CLI (no Git needed):
-    npx wrangler pages deploy . --project-name monkeymetmonkey
+## Deploy on Cloudflare
+- Build command: *(empty)*
+- Deploy command: `npx wrangler deploy` (config in `wrangler.jsonc`)
 
-Option B – Git: push this folder to GitHub/GitLab, then in Cloudflare
-Pages "Create project" > "Connect to Git". Framework preset: None,
-build command: empty, output directory: `/`.
+Manual deploy from this folder: `npx wrangler deploy`
 
-Custom domain: Pages project > Custom domains > add `www.monkeymetmonkey.com`.
+Classic Pages project instead? Set build output directory to `public`,
+leave build command empty, and delete `wrangler.jsonc`.
+
+Custom domain: add `www.monkeymetmonkey.com` under the project's Domains / Custom domains.
